@@ -68,7 +68,19 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      active_timelog: {
+        Row: {
+          elapsed_seconds: number | null
+          end_time: string | null
+          estimate_seconds: number | null
+          id: string | null
+          start_time: string | null
+          status: Database["public"]["Enums"]["timer_status"] | null
+          subtask_id: string | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       start_timer: {
