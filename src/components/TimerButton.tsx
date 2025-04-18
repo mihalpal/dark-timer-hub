@@ -18,12 +18,16 @@ export const TimerButton = ({ subtaskId }: TimerButtonProps) => {
       if (!isRunning) {
         const { data, error } = await supabase.rpc('start_timer', { subtask_id: subtaskId });
         if (error) throw error;
-        setCurrentTimerId(data.timer_id);
-        setIsRunning(true);
-        toast({
-          title: "Timer started",
-          description: "Your timer is now running",
-        });
+        
+        // Access timer_id from the JSON object
+        if (data && typeof data === 'object' && 'timer_id' in data) {
+          setCurrentTimerId(data.timer_id as string);
+          setIsRunning(true);
+          toast({
+            title: "Timer started",
+            description: "Your timer is now running",
+          });
+        }
       } else if (currentTimerId) {
         const { error } = await supabase.rpc('stop_timer', { timer_id: currentTimerId });
         if (error) throw error;
