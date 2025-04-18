@@ -20,7 +20,7 @@ const SubtaskDetail = () => {
       try {
         const { data, error } = await supabase
           .from('subtasks')
-          .select('name, estimate')
+          .select('name, estimate_seconds')
           .eq('id', id)
           .maybeSingle();
 
@@ -28,7 +28,7 @@ const SubtaskDetail = () => {
         
         if (data) {
           setName(data.name);
-          setEstimate(data.estimate || 0);
+          setEstimate(data.estimate_seconds || 0);
         }
       } catch (error) {
         console.error('Error fetching subtask:', error);
