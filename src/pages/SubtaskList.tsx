@@ -3,10 +3,10 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { ListChecks } from "lucide-react";
 import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from "@/components/ui/table";
 import { Skeleton } from "@/components/ui/skeleton";
+import { CreateSubtaskDialog } from "@/components/CreateSubtaskDialog";
 
 const SubtaskList: React.FC = () => {
   const { data: subtasks, isLoading } = useQuery({
@@ -35,7 +35,7 @@ const SubtaskList: React.FC = () => {
             <ListChecks className="h-6 w-6" />
             Subtasks
           </CardTitle>
-          <Button>Add Subtask</Button>
+          <CreateSubtaskDialog />
         </CardHeader>
         <CardContent>
           {isLoading ? (
