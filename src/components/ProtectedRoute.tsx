@@ -1,22 +1,29 @@
 
-import { ReactNode } from "react";
-import { Navigate } from "react-router-dom";
-
-// This is a placeholder until we connect with Supabase
-// For development purposes, we'll bypass authentication
-// In production, this would be replaced with Supabase auth check
-const isAuthenticated = true;
+import { ReactNode, useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 
 interface ProtectedRouteProps {
   children: ReactNode;
 }
 
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  // For development, let's bypass authentication
-  // In production with Supabase, this will check if the user is authenticated
-  if (!isAuthenticated) {
-    return <Navigate to="/signin" replace />;
-  }
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (!session) {
+        navigate("/signin", { replace: true });
+      }
+    });
+
+    // Check current session on mount
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) {
+        navigate("/signin", { replace: true });
+      }
+    });
+  }, [navigate]);
 
   return <>{children}</>;
 };
