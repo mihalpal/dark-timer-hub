@@ -11,6 +11,7 @@ import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import SubtaskDetail from "./pages/SubtaskDetail";
 import SubtaskList from "./pages/SubtaskList";
+import Dashboard from "./pages/Dashboard";
 
 const queryClient = new QueryClient();
 
@@ -25,7 +26,8 @@ const App = () => (
           
           {/* Protected routes */}
           <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
-            <Route index element={<Index />} />
+            <Route index element={<Navigate to="/dashboard" replace />} />
+            <Route path="dashboard" element={<Dashboard />} />
             <Route path="categories" element={<Categories />} />
             <Route path="subtasks" element={<SubtaskList />} />
             <Route path="subtask/:id" element={<SubtaskDetail />} />

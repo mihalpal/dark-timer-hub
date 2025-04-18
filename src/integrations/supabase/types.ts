@@ -81,6 +81,14 @@ export type Database = {
         }
         Relationships: []
       }
+      daily_time_summary: {
+        Row: {
+          day: string | null
+          total_seconds: number | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       start_timer: {

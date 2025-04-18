@@ -1,10 +1,11 @@
 
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Timer, ListTodo, ListChecks } from "lucide-react";
+import { Timer, ListTodo, ListChecks, LayoutDashboard } from "lucide-react";
 
 const navItems = [
-  { icon: Timer, label: "Timer", path: "/" },
+  { icon: LayoutDashboard, label: "Dashboard", path: "/dashboard" },
+  { icon: Timer, label: "Timer", path: "/timer" },
   { icon: ListTodo, label: "Categories", path: "/categories" },
   { icon: ListChecks, label: "Subtasks", path: "/subtasks" },
 ];
