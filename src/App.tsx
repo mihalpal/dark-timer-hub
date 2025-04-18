@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import SubtaskDetail from "./pages/SubtaskDetail";
 import SubtaskList from "./pages/SubtaskList";
 import Dashboard from "./pages/Dashboard";
+import Timer from "./pages/Timer";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
             <Route index element={<Navigate to="/dashboard" replace />} />
             <Route path="dashboard" element={<Dashboard />} />
+            <Route path="timer" element={<Timer />} />
             <Route path="categories" element={<Categories />} />
             <Route path="subtasks" element={<SubtaskList />} />
             <Route path="subtask/:id" element={<SubtaskDetail />} />
