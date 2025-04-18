@@ -9,6 +9,7 @@ import SignIn from "./pages/SignIn";
 import Categories from "./pages/Categories";
 import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
+import SubtaskDetail from "./pages/SubtaskDetail";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
             <Route index element={<Index />} />
             <Route path="categories" element={<Categories />} />
+            <Route path="subtask/:id" element={<SubtaskDetail />} />
           </Route>
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

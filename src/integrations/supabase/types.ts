@@ -9,16 +9,55 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      time_entries: {
+        Row: {
+          created_at: string
+          end_time: string | null
+          id: string
+          start_time: string
+          status: Database["public"]["Enums"]["timer_status"]
+          subtask_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          end_time?: string | null
+          id?: string
+          start_time?: string
+          status?: Database["public"]["Enums"]["timer_status"]
+          subtask_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          end_time?: string | null
+          id?: string
+          start_time?: string
+          status?: Database["public"]["Enums"]["timer_status"]
+          subtask_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      start_timer: {
+        Args: { subtask_id: string }
+        Returns: Json
+      }
+      stop_timer: {
+        Args: { timer_id: string }
+        Returns: Json
+      }
     }
     Enums: {
-      [_ in never]: never
+      timer_status: "running" | "paused"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -133,6 +172,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      timer_status: ["running", "paused"],
+    },
   },
 } as const
