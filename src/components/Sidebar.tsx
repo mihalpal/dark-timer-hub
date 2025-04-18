@@ -1,11 +1,12 @@
 
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Timer, ListTodo } from "lucide-react";
+import { Timer, ListTodo, ListChecks } from "lucide-react";
 
 const navItems = [
   { icon: Timer, label: "Timer", path: "/" },
   { icon: ListTodo, label: "Categories", path: "/categories" },
+  { icon: ListChecks, label: "Subtasks", path: "/subtasks" },
 ];
 
 export const Sidebar = () => {
